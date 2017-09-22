@@ -16,8 +16,9 @@ module Ckeditor
 
         extension = File.extname(filename)
         basename = filename.gsub(/#{extension}$/, '')
+        separator_arg = Rails::VERSION::MAJOR < 5 ? '_' : { separator: '_' }
 
-        [basename.parameterize('_'), extension].join.downcase
+        [basename.parameterize(separator_arg), extension].join.downcase
       end
 
       def js_replace(dom_id, options = nil)
